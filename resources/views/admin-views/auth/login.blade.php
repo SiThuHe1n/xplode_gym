@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="col-md-6 float-right text-center hide-div-auth">
-                        <h2 class="h-three-auth">{{\App\CPU\translate('POS')}} </h2>
+                        <h2 class="h-three-auth">{{\App\CPU\translate('GYM')}} </h2>
                         <h4 class="text-capitalize h-four-auth">{{\App\CPU\translate('management_system')}}</h4>
                     </div>
 
