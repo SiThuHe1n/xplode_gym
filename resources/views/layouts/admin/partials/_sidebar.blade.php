@@ -321,7 +321,20 @@
             @endif
         @endforeach
 
-
+        <li class="nav-item">
+            <small
+                class="nav-subtitle">{{\App\CPU\translate('Report')}}</small>
+            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+        </li>
+        <li class="navbar-vertical-aside-has-menu {{Request::is('purchase/section/list')?'show':''}}">
+            <a class="js-navbar-vertical-aside-menu-link nav-link"
+               href="/purchase/section/list" title="{{\App\CPU\translate('Purchase List')}}">
+                <i class="tio-home-vs-1-outlined nav-icon"></i>
+                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                    {{\App\CPU\translate('Purchase List')}}
+                </span>
+            </a>
+        </li>
 
 
 
