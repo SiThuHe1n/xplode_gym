@@ -69,5 +69,10 @@ class Kernel extends HttpKernel
         'installation-check' => InstallationMiddleware::class,
         'actch' => ActivationCheckMiddleware::class,
         'api_token' => \App\Http\Middleware\EnsureTokenIsValid::class,
+        'member' => \App\Http\Middleware\Member::class,
+        'staff' => \App\Http\Middleware\Staff::class,
+        'setup' => \App\Http\Middleware\Setup::class,
+        'pos' => \App\Http\Middleware\Pos::class,
+        'checkin' => \App\Http\Middleware\Checkin::class,
     ];
 }

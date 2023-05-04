@@ -202,15 +202,15 @@
                                 <input
                                 @if($data->permission)
                                 @foreach (json_decode($data->permission) as $per )
-                                    @if($per=='report')
+                                    @if($per=='checkin')
                                         checked
                                     @endif
                                 @endforeach
                                 @endif
 
-                                 name="permission[]" value="report" class="form-check-input" type="checkbox"  id="defaultCheck1">
+                                 name="permission[]" value="checkin" class="form-check-input" type="checkbox"  id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
-                                  Report
+                                  Checkin
                                 </label>
                               </div>
 

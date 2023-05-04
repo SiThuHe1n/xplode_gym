@@ -20,6 +20,9 @@ Route::fallback(function(){
     return redirect('admin/auth/login');
 });
 
+Route::middleware('admin')->group(function () {
+    Route::middleware('admin')->group(function () {
+
 Route::get('/staff/list',[StaffController::class,'list_staff'])->name('staff.list');
 Route::get('/staff/list/{search}',[StaffController::class,'list_staff']);
 Route::get('/staff/add',[StaffController::class,'add_staff'])->name('staff.add');
@@ -29,6 +32,20 @@ Route::post('/staff/update/{id}',[StaffController::class,'update_staff'])->name(
 Route::get('/staff/delete/{id}',[StaffController::class,'delete_staff'])->name('staff.delete');
 
 
+Route::get('/trainer/list/{trainer}',[StaffController::class,'list_trainer'])->name('trainer.list');
+Route::get('/trainer/list/{trainer}/{search}',[StaffController::class,'list_trainer']);
+Route::get('/trainer/add/{trainer}',[StaffController::class,'add_trainer'])->name('trainer.add');
+Route::get('/trainer/edit/{trainer}/{id}',[StaffController::class,'edit_trainer'])->name('trainer.edit');
+Route::post('/trainer/create/{trainer}',[StaffController::class,'create_trainer'])->name('trainer.create');
+Route::post('/trainer/update/{trainer}/{id}',[StaffController::class,'update_trainer'])->name('trainer.update');
+Route::get('/trainer/delete/{trainer}/{id}',[StaffController::class,'delete_trainer'])->name('trainer.delete');
+
+
+
+    });
+
+
+    Route::middleware('member')->group(function () {
 
 
 Route::get('/member/active',[MemberController::class,'active_member'])->name('member.active');
@@ -52,6 +69,16 @@ Route::get('/member/delete/{id}',[MemberController::class,'delete_member'])->nam
 
 
 
+    });
+
+    Route::middleware('admin')->group(function () {
+
+
+    });
+
+    Route::middleware('setup')->group(function () {
+
+
 Route::get('/ptrainer/list',[StaffController::class,'list_ptrainer'])->name('ptrainer.list');
 Route::get('/ptrainer/list/{search}',[StaffController::class,'list_ptrainer']);
 Route::get('/ptrainer/add',[StaffController::class,'add_ptrainer'])->name('ptrainer.add');
@@ -63,14 +90,9 @@ Route::get('/ptrainer/delete/{id}',[StaffController::class,'delete_ptrainer'])->
 
 
 
-Route::get('/trainer/list/{trainer}',[StaffController::class,'list_trainer'])->name('trainer.list');
-Route::get('/trainer/list/{trainer}/{search}',[StaffController::class,'list_trainer']);
-Route::get('/trainer/add/{trainer}',[StaffController::class,'add_trainer'])->name('trainer.add');
-Route::get('/trainer/edit/{trainer}/{id}',[StaffController::class,'edit_trainer'])->name('trainer.edit');
-Route::post('/trainer/create/{trainer}',[StaffController::class,'create_trainer'])->name('trainer.create');
-Route::post('/trainer/update/{trainer}/{id}',[StaffController::class,'update_trainer'])->name('trainer.update');
-Route::get('/trainer/delete/{trainer}/{id}',[StaffController::class,'delete_trainer'])->name('trainer.delete');
+    });
 
+    Route::middleware('checkin')->group(function () {
 
 Route::get('/checkin/member',[CheckinController::class,'checkin_form'])->name('checkin.member');
 
@@ -87,11 +109,21 @@ Route::get('/checkin/dashboard',[CheckinController::class,'checkin'])->name('che
 Route::get('/checkin/new',[CheckinController::class,'new_member'])->name('new.member');
 Route::get('/checkin/old',[CheckinController::class,'old_member'])->name('old.member');
 Route::get('/checkin/guest',[CheckinController::class,'guest_member'])->name('guest.member');
-Route::get('/get_section/{trainer}',[CheckinController::class,'get_section']);
-Route::get('/get_member/{search}',[MemberController::class,'get_member']);
-Route::get('/get_guest/{search}',[MemberController::class,'get_guest']);
 
 
+Route::POST('/new_member',[MemberController::class,'new_member'])->name('create.member.new');
+
+Route::POST('/old_member',[MemberController::class,'old_member'])->name('create.member.old');
+
+
+Route::POST('/new_guest',[MemberController::class,'new_guest'])->name('create.guest.new');
+
+Route::POST('/old_guest',[MemberController::class,'old_guest'])->name('create.guest.old');
+
+
+    });
+
+    Route::middleware('setup')->group(function () {
 
 Route::get('/section/list',[MemberController::class,'list_section'])->name('section.list');
 Route::get('/section/list/{search}',[MemberController::class,'list_section']);
@@ -111,14 +143,14 @@ Route::post('/payment/create',[CheckinController::class,'create_payment'])->name
 Route::post('/payment/update/{id}',[CheckinController::class,'update_payment'])->name('payment.update');
 Route::get('/payment/delete/{id}',[CheckinController::class,'delete_payment'])->name('payment.delete');
 
-Route::POST('/new_member',[MemberController::class,'new_member'])->name('create.member.new');
 
-Route::POST('/old_member',[MemberController::class,'old_member'])->name('create.member.old');
+    });
 
 
-Route::POST('/new_guest',[MemberController::class,'new_guest'])->name('create.guest.new');
+    Route::get('/get_section/{trainer}',[CheckinController::class,'get_section']);
+Route::get('/get_member/{search}',[MemberController::class,'get_member']);
+Route::get('/get_guest/{search}',[MemberController::class,'get_guest']);
 
-Route::POST('/old_guest',[MemberController::class,'old_guest'])->name('create.guest.old');
 
 
 
@@ -133,6 +165,8 @@ Route::get('/trainer/pt/{id}',[ReportController::class,'trainer_pt_list'])->name
 
 Route::get('/member/detail/{id}',[MemberController::class,'member_purchase_section'])->name('member.purchase');
 
+
+});
 
 
 Route::get('authentication-failed', function () {

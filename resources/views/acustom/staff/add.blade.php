@@ -161,9 +161,9 @@
 
 
                               <div class="form-check">
-                                <input name="permission[]" value="report" class="form-check-input" type="checkbox"  id="defaultCheck1">
+                                <input name="permission[]" value="checkin" class="form-check-input" type="checkbox"  id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
-                                  Report
+                                  Checkin
                                 </label>
                               </div>
 

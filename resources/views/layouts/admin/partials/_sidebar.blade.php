@@ -30,7 +30,8 @@
                     <ul class="navbar-nav navbar-nav-lg nav-tabs">
                         <!-- Dashboards -->
 
-
+                        @foreach (json_decode(Auth('staff')->user()->permission) as $per)
+                            @if($per=='checkin')
 
                         <li class="nav-item">
                             <small
@@ -46,43 +47,53 @@
                                 </span>
                             </a>
                         </li>
-                        <!-- End Dashboards -->
-                        <li class="nav-item">
-                            <small
-                                class="nav-subtitle">{{\App\CPU\translate('pos_section')}}</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
-                        <!-- Pos Pages -->
-                        @php($orders = \App\Models\Order::get()->count())
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/pos*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                            >
-                                <i class="tio-shopping nav-icon"></i>
-                                <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('POS')}}</span>
-                            </a>
-                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/pos*')?'d-block':''}}">
-                                <li class="nav-item {{Request::is('admin/pos/')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.pos.index')}}"
-                                       title="{{\App\CPU\translate('POS')}}" target="_blank">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('pos')}}</span>
-                                    </a>
-                                </li>
+                            @endif
+                        @endforeach
 
-                                <li class="nav-item {{Request::is('admin/pos/orders')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.pos.orders')}}"
-                                       title="{{\App\CPU\translate('orders')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('orders')}}
-                                            <span class="badge badge-success ml-2">{{ $orders }} </span>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
 
-                        <!-- Pos End Pages -->
+                        @foreach (json_decode(Auth('staff')->user()->permission) as $per)
+                        @if($per=='pos')
+                            <!-- End Dashboards -->
+                            <li class="nav-item">
+                                <small
+                                    class="nav-subtitle">{{\App\CPU\translate('pos_section')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            </li>
+                            <!-- Pos Pages -->
+                            @php($orders = \App\Models\Order::get()->count())
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/pos*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
+                                >
+                                    <i class="tio-shopping nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('POS')}}</span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/pos*')?'d-block':''}}">
+                                    <li class="nav-item {{Request::is('admin/pos/')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.pos.index')}}"
+                                           title="{{\App\CPU\translate('POS')}}" target="_blank">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('pos')}}</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item {{Request::is('admin/pos/orders')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.pos.orders')}}"
+                                           title="{{\App\CPU\translate('orders')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('orders')}}
+                                                <span class="badge badge-success ml-2">{{ $orders }} </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    @endforeach
+
+                    @foreach (json_decode(Auth('staff')->user()->permission) as $per)
+                    @if($per=='setup')
+                                      <!-- Pos End Pages -->
                         <li class="nav-item">
                             <small
                                 class="nav-subtitle">{{\App\CPU\translate('Setup')}}</small>
@@ -213,7 +224,7 @@
                                         <span class="text-truncate">{{\App\CPU\translate('Section List')}}</span>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item {{Request::is('/ptrainer/list*')?'active':''}}">
                                     <a class="nav-link " href="{{route('ptrainer.list')}}"
                                        title="{{\App\CPU\translate('Trainer Section List')}}">
@@ -225,6 +236,94 @@
 
                             </ul>
                         </li>
+                    @endif
+                @endforeach
+
+                @foreach (json_decode(Auth('staff')->user()->permission) as $per)
+                @if($per=='member')
+                <li class="nav-item">
+                    <small
+                        class="nav-subtitle">{{\App\CPU\translate('Member List')}}</small>
+                    <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                </li>
+                <!-- Customer Pages -->
+                <li class="navbar-vertical-aside-has-menu {{Request::is('member/*')?'active':''}}">
+                    <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
+                    >
+                        <i class="tio-poi-user nav-icon"></i>
+                        <span
+                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Member')}}</span>
+                    </a>
+                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('member/*')?'d-block':''}}">
+                        {{-- <li class="nav-item {{Request::is('admin/customer/add')?'active':''}}">
+                            <a class="nav-link " href="{{route('member.add')}}"
+                               title="{{\App\CPU\translate('add_new_customer')}}">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">{{\App\CPU\translate('add_customer')}}</span>
+                            </a>
+                        </li> --}}
+
+                        <li class="nav-item {{Request::is('member/active')?'active':''}}">
+                            <a class="nav-link " href="{{route('member.active')}}"
+                               title="Member List">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">{{\App\CPU\translate('Active Member')}}</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item {{Request::is('member/expire')?'active':''}}">
+                            <a class="nav-link " href="{{route('member.expire')}}"
+                               title="Member List">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">{{\App\CPU\translate('Expired Member')}}</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item {{Request::is('member/guest')?'active':''}}">
+                            <a class="nav-link " href="{{route('member.guest')}}"
+                               title="Member List">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">{{\App\CPU\translate('Guest')}}</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item {{Request::is('member/list')?'active':''}}">
+                            <a class="nav-link " href="{{route('member.list')}}"
+                               title="Member List">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">{{\App\CPU\translate('Member List')}}</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                @endif
+            @endforeach
+
+            @foreach (json_decode(Auth('staff')->user()->permission) as $per)
+            @if($per=='staff')
+            <li class="nav-item">
+                <small
+                    class="nav-subtitle">{{\App\CPU\translate('Staff')}}</small>
+                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+            </li>
+            <li class="navbar-vertical-aside-has-menu {{Request::is('staff.list')?'show':''}}">
+                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                   href="{{route('staff.list')}}" title="{{\App\CPU\translate('Staff List')}}">
+                    <i class="tio-home-vs-1-outlined nav-icon"></i>
+                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                        {{\App\CPU\translate('Staff List')}}
+                    </span>
+                </a>
+            </li>
+            @endif
+        @endforeach
+
+
+
+
 
                         {{-- <li class="navbar-vertical-aside-has-menu {{Request::is('admin/unit*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
@@ -397,79 +496,9 @@
                             </ul>
                         </li> --}}
                         <!-- Account End pages -->
-                        <li class="nav-item">
-                            <small
-                                class="nav-subtitle">{{\App\CPU\translate('Member List')}}</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
-                        <!-- Customer Pages -->
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('member/*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                            >
-                                <i class="tio-poi-user nav-icon"></i>
-                                <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Member')}}</span>
-                            </a>
-                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('member/*')?'d-block':''}}">
-                                {{-- <li class="nav-item {{Request::is('admin/customer/add')?'active':''}}">
-                                    <a class="nav-link " href="{{route('member.add')}}"
-                                       title="{{\App\CPU\translate('add_new_customer')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('add_customer')}}</span>
-                                    </a>
-                                </li> --}}
-
-                                <li class="nav-item {{Request::is('member/active')?'active':''}}">
-                                    <a class="nav-link " href="{{route('member.active')}}"
-                                       title="Member List">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('Active Member')}}</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item {{Request::is('member/expire')?'active':''}}">
-                                    <a class="nav-link " href="{{route('member.expire')}}"
-                                       title="Member List">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('Expired Member')}}</span>
-                                    </a>
-                                </li>
 
 
-                                <li class="nav-item {{Request::is('member/guest')?'active':''}}">
-                                    <a class="nav-link " href="{{route('member.guest')}}"
-                                       title="Member List">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('Guest')}}</span>
-                                    </a>
-                                </li>
 
-                                <li class="nav-item {{Request::is('member/list')?'active':''}}">
-                                    <a class="nav-link " href="{{route('member.list')}}"
-                                       title="Member List">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('Member List')}}</span>
-                                    </a>
-                                </li>
-
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <small
-                                class="nav-subtitle">{{\App\CPU\translate('Staff')}}</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('staff.list')?'show':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="{{route('staff.list')}}" title="{{\App\CPU\translate('Staff List')}}">
-                                <i class="tio-home-vs-1-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{\App\CPU\translate('Staff List')}}
-                                </span>
-                            </a>
-                        </li>
                         {{-- <!-- Customer end Pages -->
                         <li class="nav-item">
                             <small

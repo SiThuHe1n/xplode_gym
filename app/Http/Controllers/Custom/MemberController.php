@@ -178,13 +178,59 @@ class MemberController extends Controller
 
    }
 
-   public function update_member()
+   public function update_member(Request $request,$id)
    {
 
+    $request->validate([
+        'name'=>'required',
+        'phone'=>'required',
+
+        'nrc_number'=>'required',
+        'address'=>'required',
+
+        'join_date'=>'required',
+
+        'dateofbirth'=>'required',
+
+    ]);
+
+
+$data= Member::find($id);
+
+
+
+
+$data->name=$request->name;
+$data->phone=$request->phone;
+$data->nrc_number=$request->nrc_number;
+$data->address=$request->address;
+$data->join_date=$request->join_date;
+$data->remain_pt=$request->remain_pt;
+if($request->image)
+{
+    $request->validate([
+        'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+    ]);
+
+    $imageName = time().'.'.$request->image->extension();
+
+    // Public Folder
+    $request->image->move(public_path('images'), $imageName);
+    $data->image=$imageName;
+}
+$data->dateofbirth=$request->dateofbirth;
+
+
+$data->status=1;
+$data->update();
+return redirect()->route('member.list');
    }
 
-   public function delete_member()
+   public function delete_member($id)
    {
+    $data=Member::find($id)->delete();
+    MemberSection::where('member_id',$id)->delete();
+    return back();
 
    }
 

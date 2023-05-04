@@ -160,9 +160,10 @@ class StaffController extends Controller
 
    }
 
-   public function delete_staff()
+   public function delete_staff($id)
    {
-
+    $data=Staff::find($id)->delete();
+    return back();
    }
 
 
@@ -345,7 +346,7 @@ public function delete_ptrainer($id)
 
 public function login()
 {
-    
+
 }
 
 
