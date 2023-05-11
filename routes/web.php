@@ -105,6 +105,7 @@ Route::get('/admin',[CheckinController::class,'checkin']);
 
 // Route::get('/checkin/dashboard',[CheckinController::class,'checkin'])->name('checkin');
 
+Route::get('/dashboard',[ReportController::class,'dashboard'])->name('dashboard');
 Route::get('/checkin/dashboard',[CheckinController::class,'checkin'])->name('checkin');
 Route::get('/checkin/new',[CheckinController::class,'new_member'])->name('new.member');
 Route::get('/checkin/old',[CheckinController::class,'old_member'])->name('old.member');

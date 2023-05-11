@@ -52,6 +52,49 @@
 
                 </form>
             </div>
+            <div class="col-md-12 ">
+                <div class="table-responsive bg-white p-3 m-2 shadow rounded">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th> No </th>
+                                <th> Trainer </th>
+                                <th> Section(Time) </th>
+                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($data as $k => $dat)
+                            <tr>
+                                <td> {{(++$k)+(15*($data->currentPage()-1))}}</td>
+                                <td> {{$dat->trainer->name ?? 'Non-Trainer'}}  </td>
+                                <td> {{$dat->datetime}} Times </td>
+
+
+
+
+
+
+                                <td>
+                                    {{-- <a href="{{route('ptrainer.edit',$dat->id)}}" class="btn btn-warning"> Edit </a>
+                                    <a href="{{route('ptrainer.delete',$dat->id)}}" class="btn btn-danger"> Delete </a> --}}
+
+                                    {{-- @if(Auth::user()->type=="admin") --}}
+                                 {{-- <a  href="/customerdelete/{{$dat->id}}" class="btn btn-danger"> <i class="fas fa-trash"></i> </a> --}}
+                                    {{-- @endif --}}
+
+                            </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+
+                    </table>
+                     <div class="d-flex justify-content-center">
+                        {{$data->links()}}
+
+                    </div>
+                </div>
+            </div>
 
         </div>
 

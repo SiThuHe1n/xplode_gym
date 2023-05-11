@@ -22,8 +22,9 @@ class CheckinController extends Controller
 
     public function checkin_form()
     {
+        $data=CheckinLog::orderBy('id','DESC')->paginate(15);
         // return 'he';
-        return view('acustom.checkin.checkin');
+        return view('acustom.checkin.checkin',compact('data'));
     }
 
     public function checkin_member(Request $request)

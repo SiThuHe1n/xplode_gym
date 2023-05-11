@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Carbon;
+
 return [
 
     /*
@@ -235,6 +237,7 @@ return [
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Carbon' => Carbon::class,
 
     ],
 

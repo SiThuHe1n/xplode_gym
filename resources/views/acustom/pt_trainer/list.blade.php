@@ -55,7 +55,7 @@
                     @foreach($data as $k => $dat)
                     <tr>
                         <td> {{(++$k)+(15*($data->currentPage()-1))}}</td>
-                        <td> {{$dat->trainer->name}} </td>
+                        <td> {{$dat->trainer->name ?? ''}}  </td>
                         <td> {{$dat->time}} Times </td>
                         <td> {{$dat->cost}} </td>
 

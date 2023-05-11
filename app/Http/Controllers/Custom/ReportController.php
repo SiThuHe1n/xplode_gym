@@ -21,6 +21,10 @@ class ReportController extends Controller
         return view('acustom.checkin.voucher2',compact('member_section','route'));
     }
 
+    public function dashboard()
+    {
+        return view('acustom.dashboard');
+    }
     public function voucher_purchase2($id)
     {
         $member_section=MemberSection::find($id);

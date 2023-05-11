@@ -577,4 +577,10 @@
   'Last name is required' => 'Last name is required',
   'Admin information updated successfully' => 'Admin information updated successfully',
   'enter username' => 'Enter username',
+  'GYM' => 'GYM',
+  'Purchase List' => 'Purchase List',
+  'Report' => 'Report',
+  'Category' => 'Category',
+  'Account' => 'Account',
+  'Checkin List' => 'Checkin List',
 );

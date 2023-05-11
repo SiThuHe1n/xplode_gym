@@ -42,31 +42,26 @@
                 <thead>
                     <tr>
                         <th> No </th>
-                        <th> Member </th>
                         <th> Trainer </th>
-                        <th> Datetime </th>
+                        <th> Section(Time) </th>
 
-
-
-                        <th> Action </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($data as $k => $dat)
                     <tr>
                         <td> {{(++$k)+(15*($data->currentPage()-1))}}</td>
-                        <td> {{$dat->member->name}}  </td>
+                        <td> {{$dat->trainer->name ?? 'Non-Trainer'}}  </td>
+                        <td> {{$dat->datetime}} Times </td>
 
-                        <td> @if($dat->trainer_id) {{$dat->trainer->name}} @endif </td>
-                        <td> {{$dat->datetime}} </td>
 
 
 
 
 
                         <td>
-                            {{-- <a href="{{route('ptrainer.edit',$dat->id)}}" class="btn btn-warning"> <i class="fas fa-edit"></i> </a> --}}
-                            {{-- <a href="{{route('ptrainer.delete',$dat->id)}}" class="btn btn-danger"> Delete </a> --}}
+                            {{-- <a href="{{route('ptrainer.edit',$dat->id)}}" class="btn btn-warning"> Edit </a>
+                            <a href="{{route('ptrainer.delete',$dat->id)}}" class="btn btn-danger"> Delete </a> --}}
 
                             {{-- @if(Auth::user()->type=="admin") --}}
                          {{-- <a  href="/customerdelete/{{$dat->id}}" class="btn btn-danger"> <i class="fas fa-trash"></i> </a> --}}
@@ -82,6 +77,8 @@
                 {{$data->links()}}
 
             </div>
+
+
         </div>
 
       <!-- /.row -->
