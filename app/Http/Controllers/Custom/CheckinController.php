@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Custom;
 
+use App\Models\User;
 use App\Models\Member;
 use App\Models\Section;
 use App\Models\CheckinLog;
+
 use Illuminate\Http\Request;
 use App\Models\MemberSection;
 use App\Models\PaymentMethod;
 use Illuminate\Support\Carbon;
 use Faker\Provider\pl_PL\Payment;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class CheckinController extends Controller
 {
@@ -58,6 +61,14 @@ class CheckinController extends Controller
 
     public function checkin_member(Request $request)
     {
+        if(strtotime(Member::find($request->member)->expire_date)<strtotime(date('Y-m-d')))
+        {
+            Toastr::error('This id is expired!');
+
+            return back();
+
+        }
+
         $data=new CheckinLog();
         $data->staff_id=0;
         $data->member_id=$request->member;
@@ -76,7 +87,6 @@ class CheckinController extends Controller
         }
         $data->save();
         $member->update();
-
 
         return back();
 
