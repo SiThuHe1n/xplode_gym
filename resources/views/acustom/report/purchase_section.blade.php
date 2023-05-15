@@ -6,36 +6,27 @@
 <div class="content p-3">
     <div class="container-fluid">
 
-        {{-- <div class="row">
-            <div class="col-6">
+        <form action="{{ route('purchase.section.list') }}" >
 
 
-            </div>
-            <div class="col-6">
-                <div class="row">
-                        <div class="col-3">
-                            <label for="">Search</label>
-                        </div>
-                        <div class="col-7">
-                            <input type="search" class="form-control" id="search">
-                        </div>
-                        <div class="col-2">
-                            <button type="button" onclick="search()" class="btn btn-primary"> Search</button>
-                        </div>
+
+            <div class="row my-3">
+                <div class="col-md-4">
+                    <label for="">Search By member</label>
+                    <input type="text" class="form-control" name="member" >
+                </div>
+
+                <div class="col-md-4">
+                    <label for="">Search By Date</label>
+                    <input type="date" class="form-control" name="date" >
+                </div>
+
+                <div class="col-md-4">
+                    <label for="">Action</label>
+                    <button class="btn btn-primary form-control">Search</button>
                 </div>
             </div>
-        </div> --}}
-        <script>
-            function search()
-            {
-             let search=   $('#search').val();
-             if(search)
-             {
-                window.location.href="/customerlist/"+search;
-             }
-
-            }
-          </script>
+        </form>
 
         <div class="table-responsive bg-white p-3 m-2 shadow rounded">
             <table class="table table-borderless">

@@ -5,14 +5,31 @@ namespace App\Http\Controllers\Custom;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use App\Models\MemberSection;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
 {
-    public function list_purchase()
+    public function list_purchase(Request $request)
     {
-        $data=MemberSection::orderBy('id','DESC')->paginate(15);
-        return view('acustom.report.purchase_section',compact('data'));
+        if(count($request->all()) > 0)
+        {
+            $data=MemberSection::wherehas('member',function($que) use($request)
+            {
+                $que->where('code','like',"%$request->member%")
+                ->where('name','like',"%$request->member%");
+
+            })->whereBetween('datetime',[Carbon::parse($request->date)->format('Y-m-d 00:00:00'),Carbon::parse($request->date)->format('Y-m-d 23:59:59')])->orderBy('id','DESC')->paginate(15);
+
+        }
+        else
+        {
+
+            $data=MemberSection::orderBy('id','DESC')->paginate(15);
+
+        }
+
+         return view('acustom.report.purchase_section',compact('data'));
     }
     public function voucher_purchase($id)
     {

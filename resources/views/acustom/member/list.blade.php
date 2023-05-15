@@ -36,6 +36,25 @@
 
             }
           </script>
+
+<form action="" >
+
+
+
+    <div class="row my-3">
+        <div class="col-md-6">
+            <label for="">Search By member</label>
+            <input type="text" class="form-control" name="member" >
+        </div>
+
+
+        <div class="col-md-6">
+            <label for="">Action</label>
+            <button class="btn btn-primary form-control">Search</button>
+        </div>
+    </div>
+</form>
+
         <div class="table-responsive bg-white p-3 m-2 shadow rounded">
             <table class="table table-borderless">
                 <thead>

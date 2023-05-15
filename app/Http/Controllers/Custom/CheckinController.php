@@ -15,9 +15,23 @@ use App\Http\Controllers\Controller;
 class CheckinController extends Controller
 {
 
-    public function checkin_list($search=null)
+    public function checkin_list(Request $request,$search=null)
     {
-        $data=CheckinLog::orderBy('id','DESC')->paginate(15);
+        if(count($request->all()) > 0)
+        {
+            $data=CheckinLog::wherehas('member',function($que) use($request)
+            {
+                $que->where('code','like',"%$request->member%")
+                ->where('name','like',"%$request->member%");
+
+            })->whereBetween('datetime',[Carbon::parse($request->date)->format('Y-m-d 00:00:00'),Carbon::parse($request->date)->format('Y-m-d 23:59:59')])->orderBy('id','DESC')->paginate(15);
+
+        }
+        else
+        {
+            $data=CheckinLog::orderBy('id','DESC')->paginate(15);
+
+        }
         return view('acustom.report.checkin',compact('data'));
     }
 
@@ -35,7 +49,7 @@ class CheckinController extends Controller
         }
         else
         {
-            $data=CheckinLog::orderBy('id','DESC')->paginate(15);
+            $data=CheckinLog::whereBetween('datetime',[Carbon::parse(date('Y-m-d'))->format('Y-m-d 00:00:00'),Carbon::parse(date('Y-m-d'))->format('Y-m-d 23:59:59')])->orderBy('id','DESC')->paginate(15);
 
         }
         // return 'he';

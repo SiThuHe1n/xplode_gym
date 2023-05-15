@@ -13,19 +13,19 @@ use App\Http\Controllers\Controller;
 class MemberController extends Controller
 {
 
-    public function list_member($search=null)
+    public function list_member(Request $request)
     {
-        if($search)
+        if($request->member)
         {
-            $data=Member::where('join_date','like',"%$search%")
-            ->orwhere('name','like',"%$search%")
-            ->orwhere('nrc_number','like',"%$search%")
-            ->orwhere('dateofbirth','like',"%$search%")
-            ->orwhere('username','like',"%$search%")
-            ->orwhere('address','like',"%$search%")
-            ->orwhere('type','like',"%$search%")
+            $data=Member::where('join_date','like',"%$request->member%")
+            ->orwhere('name','like',"%$request->member%")
+            ->orwhere('nrc_number','like',"%$request->member%")
+            ->orwhere('dateofbirth','like',"%$request->member%")
 
-            ->orwhere('phone','like',"%$search%")
+            ->orwhere('address','like',"%$request->member%")
+       
+
+            ->orwhere('phone','like',"%$request->member%")
             ->orderBy('id','desc')->paginate(15);
 
         }
@@ -701,25 +701,26 @@ public function delete_section($id)
 }
 
 
-public function guest_member($search=null)
+public function guest_member(Request $request)
 {
-    if($search)
+    if(count($request->all()))
     {
         $data=Member::where('is_guest',1)->
-        where(function($que) use($search){
-            $que->where('join_date','like',"%$search%")
-            ->orwhere('name','like',"%$search%")
-            ->orwhere('nrc_number','like',"%$search%")
-            ->orwhere('dateofbirth','like',"%$search%")
-            ->orwhere('username','like',"%$search%")
-            ->orwhere('address','like',"%$search%")
-            ->orwhere('type','like',"%$search%")
+        where(function($que) use($request){
+            $que->where('join_date','like',"%$request->member%")
+            ->orwhere('name','like',"%$request->member%")
+            ->orwhere('nrc_number','like',"%$request->member%")
+            ->orwhere('dateofbirth','like',"%$request->member%")
 
-            ->orwhere('phone','like',"%$search%");
+            ->orwhere('address','like',"%$request->member%")
+       
+
+            ->orwhere('phone','like',"%$request->member%");
         })
         ->orderBy('id','desc')->paginate(15);
 
     }
+
     else
     {
         $data=Member::where('is_guest',1)->orderBy('id','DESC')->paginate(15);
@@ -730,22 +731,22 @@ public function guest_member($search=null)
 
 
 
-public function expire_member($search=null)
+public function expire_member(Request $request)
 {
-    if($search)
+    if(count($request->all()))
     {
         $data=Member::where('expire_date','<',Carbon::now())
         ->where('is_guest',0)->
-        where(function($que) use($search){
-            $que->where('join_date','like',"%$search%")
-            ->orwhere('name','like',"%$search%")
-            ->orwhere('nrc_number','like',"%$search%")
-            ->orwhere('dateofbirth','like',"%$search%")
-            ->orwhere('username','like',"%$search%")
-            ->orwhere('address','like',"%$search%")
-            ->orwhere('type','like',"%$search%")
+        where(function($que) use($request){
+            $que->where('join_date','like',"%$request->member%")
+            ->orwhere('name','like',"%$request->member%")
+            ->orwhere('nrc_number','like',"%$request->member%")
+            ->orwhere('dateofbirth','like',"%$request->member%")
 
-            ->orwhere('phone','like',"%$search%");
+            ->orwhere('address','like',"%$request->member%")
+       
+
+            ->orwhere('phone','like',"%$request->member%");
         })
         ->orderBy('id','desc')->paginate(15);
 
@@ -760,22 +761,23 @@ public function expire_member($search=null)
 }
 
 
-public function active_member($search=null)
+public function active_member(Request $request)
 {
-    if($search)
+
+    if(count($request->all()))
     {
         $data=Member::where('expire_date','>=',Carbon::now())
         ->where('is_guest',0)->
-        where(function($que) use($search){
-            $que->where('join_date','like',"%$search%")
-            ->orwhere('name','like',"%$search%")
-            ->orwhere('nrc_number','like',"%$search%")
-            ->orwhere('dateofbirth','like',"%$search%")
-            ->orwhere('username','like',"%$search%")
-            ->orwhere('address','like',"%$search%")
-            ->orwhere('type','like',"%$search%")
+        where(function($que) use($request){
+            $que->where('join_date','like',"%$request->member%")
+            ->orwhere('name','like',"%$request->member%")
+            ->orwhere('nrc_number','like',"%$request->member%")
+            ->orwhere('dateofbirth','like',"%$request->member%")
 
-            ->orwhere('phone','like',"%$search%");
+            ->orwhere('address','like',"%$request->member%")
+       
+
+            ->orwhere('phone','like',"%$request->member%");
         })
         ->orderBy('id','desc')->paginate(15);
 
