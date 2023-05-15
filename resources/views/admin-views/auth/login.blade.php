@@ -27,13 +27,16 @@
             <div class="col-md-8 mt-10">
                 <!-- Card -->
                 <div class="row">
-                    <div class="col-md-6 text-center show-div-auth">
-                        <h2 class="h-one-auth">{{\App\CPU\translate('POS')}} </h2>
-                        <h4 class="text-capitalize h-two-auth">{{\App\CPU\translate('management_system')}}</h4>
-                    </div>
 
-                    <div class="col-md-6 div-one-auth">
+
+                    <div class="col-md-12 ">
                         <!-- Form -->
+                        <div class="text-center ">
+                            <h2 class="h-three-auth">{{\App\CPU\translate('XPLODE GYM')}} </h2>
+                            <h4 class="text-capitalize h-four-auth">{{\App\CPU\translate('management_system')}}</h4>
+
+                        </div>
+
                         <form class="js-validate" action="{{route('admin.auth.login')}}" method="post">
                         @csrf
                         <!-- Form Group -->
@@ -73,9 +76,7 @@
                     </div>
 
                     <div class="col-md-6 float-right text-center hide-div-auth">
-                        <h2 class="h-three-auth">{{\App\CPU\translate('GYM')}} </h2>
-                        <h4 class="text-capitalize h-four-auth">{{\App\CPU\translate('management_system')}}</h4>
-                    </div>
+                  </div>
 
                     <div class="col-md-6 mt-4">
                         @if(env('APP_MODE')=='demo')

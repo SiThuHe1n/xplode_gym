@@ -40,10 +40,20 @@
                         </li>
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin')?'show':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="{{route('checkin')}}" title="{{\App\CPU\translate('Check In')}}">
+                               href="{{route('checkin.member')}}" title="{{\App\CPU\translate('Check In')}}">
                                 <i class="tio-home-vs-1-outlined nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
                                     {{\App\CPU\translate('Check In')}}
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin')?'show':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('checkin')}}" title="{{\App\CPU\translate('Check In')}}">
+                                <i class="tio-home-vs-1-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    {{\App\CPU\translate('New Member')}}
                                 </span>
                             </a>
                         </li>

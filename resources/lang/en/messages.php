@@ -583,4 +583,6 @@
   'Category' => 'Category',
   'Account' => 'Account',
   'Checkin List' => 'Checkin List',
+  'XPLODE GYM' => 'XPLODE GYM',
+  'New Member' => 'New Member',
 );

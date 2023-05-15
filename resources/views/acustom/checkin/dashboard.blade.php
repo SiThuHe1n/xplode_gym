@@ -11,7 +11,6 @@
                 <a href="{{ route('new.member') }}" class="btn btn-dark form-control mx-3 my-1">New Member</a>
                 <a href="{{ route('old.member') }}" class="btn btn-dark form-control mx-3 my-1">Old Member</a>
                 <a href="{{ route('guest.member') }}" class="btn btn-dark form-control mx-3 my-1">Guest</a>
-                <a href="{{ route('checkin.member') }}" class="btn btn-dark form-control mx-3 my-1">Check In</a>
 
             </div>
 

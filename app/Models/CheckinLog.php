@@ -19,4 +19,9 @@ class CheckinLog extends Model
         return $this->belongsTo(Member::class,'member_id');
     }
 
+    public function package()
+    {
+        return $this->belongsTo(Package::class,'current_package');
+    }
+
 }

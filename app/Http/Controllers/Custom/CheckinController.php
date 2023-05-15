@@ -6,6 +6,7 @@ use App\Models\Member;
 use App\Models\Section;
 use App\Models\CheckinLog;
 use Illuminate\Http\Request;
+use App\Models\MemberSection;
 use App\Models\PaymentMethod;
 use Illuminate\Support\Carbon;
 use Faker\Provider\pl_PL\Payment;
@@ -20,9 +21,23 @@ class CheckinController extends Controller
         return view('acustom.report.checkin',compact('data'));
     }
 
-    public function checkin_form()
+    public function checkin_form(Request $request)
     {
-        $data=CheckinLog::orderBy('id','DESC')->paginate(15);
+        if($request)
+        {
+            $data=CheckinLog::wherehas('member',function($que) use($request)
+            {
+                $que->where('code','like',"%$request->member%")
+                ->where('name','like',"%$request->member%");
+
+            })->whereBetween('datetime',[Carbon::parse($request->date)->format('Y-m-d 00:00:00'),Carbon::parse($request->date)->format('Y-m-d 23:59:59')])->orderBy('id','DESC')->paginate(15);
+
+        }
+        else
+        {
+            $data=CheckinLog::orderBy('id','DESC')->paginate(15);
+
+        }
         // return 'he';
         return view('acustom.checkin.checkin',compact('data'));
     }
@@ -36,7 +51,9 @@ class CheckinController extends Controller
         $data->is_pt=0;
 
         $member=Member::find($request->member);
-
+        $section=MemberSection::where('member_id',$member->id)->latest()->first();
+       $data->current_package=$section->package_id;
+       $data->expire_date=$member->expire_date;
         if($request->trainer)
         {
             $data->is_pt=1;
