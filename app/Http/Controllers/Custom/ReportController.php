@@ -25,7 +25,7 @@ class ReportController extends Controller
         else
         {
 
-            $data=MemberSection::orderBy('id','DESC')->paginate(15);
+            $data=MemberSection::whereBetween('datetime',[Carbon::parse(date('Y-m-d'))->format('Y-m-d 00:00:00'),Carbon::parse(date('Y-m-d'))->format('Y-m-d 23:59:59')])->orderBy('id','DESC')->paginate(15);
 
         }
 

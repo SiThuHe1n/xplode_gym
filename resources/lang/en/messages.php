@@ -585,4 +585,8 @@
   'Checkin List' => 'Checkin List',
   'XPLODE GYM' => 'XPLODE GYM',
   'New Member' => 'New Member',
+  'Purchase Section List' => 'Purchase Section List',
+  'Staff ' => 'Staff ',
+  'Cash & Bank' => 'Cash & Bank',
+  'Sale Section List' => 'Sale Section List',
 );

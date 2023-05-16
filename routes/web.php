@@ -23,6 +23,11 @@ Route::fallback(function(){
 Route::middleware('admin')->group(function () {
     Route::middleware('admin')->group(function () {
 
+
+
+        Route::get('/staff/list/2',[StaffController::class,'list_staff2'])->name('staff.list.2');
+
+
 Route::get('/staff/list',[StaffController::class,'list_staff'])->name('staff.list');
 Route::get('/staff/list/{search}',[StaffController::class,'list_staff']);
 Route::get('/staff/add',[StaffController::class,'add_staff'])->name('staff.add');

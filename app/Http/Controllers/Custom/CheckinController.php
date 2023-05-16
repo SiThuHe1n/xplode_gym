@@ -92,6 +92,9 @@ class CheckinController extends Controller
 
 
     }
+   
+
+
     public function get_section($trainer)
     {
         $data=Section::where('trainer_id',$trainer)->get();

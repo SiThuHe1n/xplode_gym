@@ -101,201 +101,6 @@
                         @endif
                     @endforeach
 
-                    @foreach (json_decode(Auth('staff')->user()->permission) as $per)
-                    @if($per=='setup')
-                                      <!-- Pos End Pages -->
-                        <li class="nav-item">
-                            <small
-                                class="nav-subtitle">{{\App\CPU\translate('Setup')}}</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
-                        <!-- category Pages -->
-
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/category*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                            >
-                                <i class="tio-category nav-icon"></i>
-                                <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Setup')}}</span>
-                            </a>
-                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/category*')?'d-block':''}}">
-
-
-
-
-                                <!-- Pos Pages -->
-
-                                <li class="navbar-vertical-aside-has-menu {{Request::is('admin/psd')?'active':''}}">
-                                    <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                                    >
-                                        <i class="tio-shopping nav-icon"></i>
-                                        <span
-                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Category')}}</span>
-                                    </a>
-                                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/pos*')?'d-block':''}}">
-                                        <li class="nav-item {{Request::is('admin/category/add')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.category.add')}}"
-                                               title="{{\App\CPU\translate('add_new_category')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('category')}}</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item {{Request::is('admin/category/add-sub-category')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.category.add-sub-category')}}"
-                                               title="{{\App\CPU\translate('add_new_sub_category')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('sub_category')}}</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-
-
-
-
-                                <li class="navbar-vertical-aside-has-menu {{Request::is('admin/unit*')?'active':''}}">
-                                    <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                       href="{{route('admin.unit.index')}}"
-                                    >
-                                        <i class="tio-calculator nav-icon"></i>
-                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                            {{\App\CPU\translate('unit')}}
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li class="navbar-vertical-aside-has-menu {{Request::is('admin/brand*')?'active':''}}">
-                                    <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                       href="{{route('admin.brand.add')}}"
-                                    >
-                                        <i class="tio-star nav-icon"></i>
-                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                            {{\App\CPU\translate('brand')}}
-                                        </span>
-                                    </a>
-                                </li>
-
-
-                                <li class="navbar-vertical-aside-has-menu {{Request::is('admin/psd')?'active':''}}">
-                                    <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                                    >
-                                        <i class="tio-shopping nav-icon"></i>
-                                        <span
-                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Product')}}</span>
-                                    </a>
-                                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/pos*')?'d-block':''}}">
-
-                                        <li class="nav-item {{Request::is('admin/product/add')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.product.add')}}"
-                                               title="{{\App\CPU\translate('add_new_product')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('add_new')}}</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item {{Request::is('admin/product/list')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.product.list')}}"
-                                               title="{{\App\CPU\translate('list_of_products')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('list')}}</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-
-
-                                <li class="navbar-vertical-aside-has-menu {{Request::is('admin/psd')?'active':''}}">
-                                    <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                                    >
-                                        <i class="tio-shopping nav-icon"></i>
-                                        <span
-                                            class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Account')}}</span>
-                                    </a>
-                                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/pfh*')?'d-block':''}}">
-
-                                        <li class="nav-item {{Request::is('admin/account/add')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.account.add')}}"
-                                               title="{{\App\CPU\translate('add_new_account')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('add_new_account')}}</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item {{Request::is('admin/account/list')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.account.list')}}"
-                                               title="{{\App\CPU\translate('account_list')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('accounts')}}</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item {{Request::is('admin/account/add-expense')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.account.add-expense')}}"
-                                               title="{{\App\CPU\translate('add_new_expense')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('new_expense')}}</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item {{Request::is('admin/account/add-income')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.account.add-income')}}"
-                                               title="{{\App\CPU\translate('add_new_income')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('new_income')}}</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item {{Request::is('admin/account/add-transfer')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.account.add-transfer')}}"
-                                               title="{{\App\CPU\translate('add_new_transfer')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('new_transfer')}}</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item {{Request::is('admin/account/list-transection')?'active':''}}">
-                                            <a class="nav-link " href="{{route('admin.account.list-transection')}}"
-                                               title="{{\App\CPU\translate('list_of_transection')}}">
-                                                <span class="tio-circle nav-indicator-icon"></span>
-                                                <span class="text-truncate">{{\App\CPU\translate('transection_list')}}</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-
-
-
-
-                                <li class="nav-item {{Request::is('admin/supplier/add')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.supplier.add')}}"
-                                       title="{{\App\CPU\translate('add_new_supplier')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('add_supplier')}}</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item {{Request::is('/section/list*')?'active':''}}">
-                                    <a class="nav-link " href="{{route('section.list')}}"
-                                       title="{{\App\CPU\translate('Section List')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('Section List')}}</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item {{Request::is('/ptrainer/list*')?'active':''}}">
-                                    <a class="nav-link " href="{{route('ptrainer.list')}}"
-                                       title="{{\App\CPU\translate('Trainer Section List')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{\App\CPU\translate('Trainer Section List')}}</span>
-                                    </a>
-                                </li>
-
-
-                            </ul>
-                        </li>
-                    @endif
-                @endforeach
 
                 @foreach (json_decode(Auth('staff')->user()->permission) as $per)
                 @if($per=='member')
@@ -379,6 +184,230 @@
             @endif
         @endforeach
 
+
+
+        @foreach (json_decode(Auth('staff')->user()->permission) as $per)
+        @if($per=='setup')
+                          <!-- Pos End Pages -->
+            <li class="nav-item">
+                <small
+                    class="nav-subtitle">{{\App\CPU\translate('Setup')}}</small>
+                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+            </li>
+            <!-- category Pages -->
+
+            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/category*')?'active':''}}">
+                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
+                >
+                    <i class="tio-category nav-icon"></i>
+                    <span
+                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Setup')}}</span>
+                </a>
+                <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/category*')?'d-block':''}}">
+
+
+
+
+                    <!-- Pos Pages -->
+
+                    <li class="navbar-vertical-aside-has-menu {{Request::is('admin/psd')?'active':''}}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
+                        >
+                            <i class="tio-shopping nav-icon"></i>
+                            <span
+                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Category')}}</span>
+                        </a>
+                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/pos*')?'d-block':''}}">
+
+
+
+
+
+
+
+
+
+
+                            <li class="nav-item {{Request::is('admin/category/add')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.category.add')}}"
+                                   title="{{\App\CPU\translate('add_new_category')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('category')}}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{Request::is('admin/category/add-sub-category')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.category.add-sub-category')}}"
+                                   title="{{\App\CPU\translate('add_new_sub_category')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('sub_category')}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+                    @foreach (json_decode(Auth('staff')->user()->permission) as $per)
+                    @if($per=='staff')
+
+                    <li class="navbar-vertical-aside-has-menu {{Request::is('staff.list.2')?'show':''}}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link"
+                           href="{{route('staff.list.2')}}" title="{{\App\CPU\translate('Staff List')}}">
+                            <i class="tio-home-vs-1-outlined nav-icon"></i>
+                            <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                {{\App\CPU\translate('Staff ')}}
+                            </span>
+                        </a>
+                    </li>
+                    @endif
+                @endforeach
+
+
+                    <li class="navbar-vertical-aside-has-menu {{Request::is('admin/unit*')?'active':''}}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link"
+                           href="{{route('admin.unit.index')}}"
+                        >
+                            <i class="tio-calculator nav-icon"></i>
+                            <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                {{\App\CPU\translate('unit')}}
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="navbar-vertical-aside-has-menu {{Request::is('admin/brand*')?'active':''}}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link"
+                           href="{{route('admin.brand.add')}}"
+                        >
+                            <i class="tio-star nav-icon"></i>
+                            <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                {{\App\CPU\translate('brand')}}
+                            </span>
+                        </a>
+                    </li>
+
+
+                    <li class="navbar-vertical-aside-has-menu {{Request::is('admin/psd')?'active':''}}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
+                        >
+                            <i class="tio-shopping nav-icon"></i>
+                            <span
+                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Product')}}</span>
+                        </a>
+                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/pos*')?'d-block':''}}">
+
+                            <li class="nav-item {{Request::is('admin/product/add')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.product.add')}}"
+                                   title="{{\App\CPU\translate('add_new_product')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('add_new')}}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{Request::is('admin/product/list')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.product.list')}}"
+                                   title="{{\App\CPU\translate('list_of_products')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('list')}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="navbar-vertical-aside-has-menu {{Request::is('admin/psd')?'active':''}}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
+                        >
+                            <i class="tio-shopping nav-icon"></i>
+                            <span
+                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Cash & Bank')}}</span>
+                        </a>
+                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub {{Request::is('admin/pfh*')?'d-block':''}}">
+
+                            <li class="nav-item {{Request::is('admin/account/add')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.account.add')}}"
+                                   title="{{\App\CPU\translate('add_new_account')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('add_new_account')}}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{Request::is('admin/account/list')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.account.list')}}"
+                                   title="{{\App\CPU\translate('account_list')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('accounts')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{Request::is('admin/account/add-expense')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.account.add-expense')}}"
+                                   title="{{\App\CPU\translate('add_new_expense')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('new_expense')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{Request::is('admin/account/add-income')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.account.add-income')}}"
+                                   title="{{\App\CPU\translate('add_new_income')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('new_income')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{Request::is('admin/account/add-transfer')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.account.add-transfer')}}"
+                                   title="{{\App\CPU\translate('add_new_transfer')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('new_transfer')}}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{Request::is('admin/account/list-transection')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.account.list-transection')}}"
+                                   title="{{\App\CPU\translate('list_of_transection')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{\App\CPU\translate('transection_list')}}</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+
+
+                    <li class="nav-item {{Request::is('admin/supplier/add')?'active':''}}">
+                        <a class="nav-link " href="{{route('admin.supplier.add')}}"
+                           title="{{\App\CPU\translate('add_new_supplier')}}">
+                            <span class="tio-circle nav-indicator-icon"></span>
+                            <span class="text-truncate">{{\App\CPU\translate('add_supplier')}}</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{Request::is('/section/list*')?'active':''}}">
+                        <a class="nav-link " href="{{route('section.list')}}"
+                           title="{{\App\CPU\translate('Section List')}}">
+                            <span class="tio-circle nav-indicator-icon"></span>
+                            <span class="text-truncate">{{\App\CPU\translate('Section List')}}</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{Request::is('/ptrainer/list*')?'active':''}}">
+                        <a class="nav-link " href="{{route('ptrainer.list')}}"
+                           title="{{\App\CPU\translate('Trainer Section List')}}">
+                            <span class="tio-circle nav-indicator-icon"></span>
+                            <span class="text-truncate">{{\App\CPU\translate('Trainer Section List')}}</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+        @endif
+    @endforeach
+
+
         <li class="nav-item">
             <small
                 class="nav-subtitle">{{\App\CPU\translate('Report')}}</small>
@@ -386,10 +415,10 @@
         </li>
         <li class="navbar-vertical-aside-has-menu {{Request::is('purchase/section/list')?'show':''}}">
             <a class="js-navbar-vertical-aside-menu-link nav-link"
-               href="/purchase/section/list" title="{{\App\CPU\translate('Purchase List')}}">
+               href="/purchase/section/list" title="{{\App\CPU\translate('Sale Section List')}}">
                 <i class="tio-home-vs-1-outlined nav-icon"></i>
                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                    {{\App\CPU\translate('Purchase List')}}
+                    {{\App\CPU\translate('Sale Section List')}}
                 </span>
             </a>
         </li>

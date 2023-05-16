@@ -8,51 +8,84 @@
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 py-5  ">
-                <form action="{{ route('checkin.member') }}" method="post">
+
+
+
+
+
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Check In
+                  </button>
+
+                  <form action="{{ route('checkin.member') }}" method="post">
                     @csrf
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-md-10 m-5 p-5 shadow bg-white rounded">
-                            <label for=""> Search </label>
-                            <input onchange="search_member(this.value)" type="text" id="search" class="form-control">
-
-                            <label for=""> Member </label>
-                            <select onchange="changemember(this.value)" id="member_list"  name="member" class="form-control @error('member') is-invalid @enderror">
-                                <option value="">Select </option>
-                              @foreach(App\Models\Member::where('is_guest','0')->get() as $key => $memb)
-                                <option value="{{ $memb->id }}"> {{ $memb->name }} - {{ $memb->phone }} </option>
-                              @endforeach
-
-                            </select>
-                            @error('member')
-                                <span class="error invalid-feedback">
-                                    {{ $message }}
-                                </span>
-                            @enderror
-                                <label for=""> Name </label>
-                              <input type="text" readonly class="form-control" value="" id="member_name">
-                              <label for=""> Phone </label>
-                              <input type="text" readonly class="form-control" value="" id="member_phone">
-
-                              <label for=""> Address </label>
-                              <textarea type="text" readonly class="form-control" value="" id="member_address"></textarea>
-                              <label for=""> Remain PT </label>
-                              <input type="text" readonly class="form-control" value="" id="member_remain">
-
-                              <div class="form-check form-switch">
-                                <input name="trainer" value="yes" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" >
-                                <label class="form-check-label" for="flexSwitchCheckChecked"> Person Trainer </label>
-                              </div>
 
 
-
-                            <button class="btn btn-primary my-3">Check In</button>
-                            <a href="{{route('checkin')}}" class="btn btn-warning"> Cancle </a>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Check In </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
-                    </div>
+                        <div class="modal-body">
 
+                                        <label for=""> Search </label>
+                                        <input onchange="search_member(this.value)" type="text" id="search" class="form-control">
+
+                                        <label for=""> Member </label>
+                                        <select onchange="changemember(this.value)" id="member_list"  name="member" class="form-control @error('member') is-invalid @enderror">
+                                            <option value="">Select </option>
+                                        @foreach(App\Models\Member::where('is_guest','0')->get() as $key => $memb)
+                                            <option value="{{ $memb->id }}"> {{ $memb->name }} - {{ $memb->phone }} </option>
+                                        @endforeach
+
+                                        </select>
+                                        @error('member')
+                                            <span class="error invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                            <label for=""> Name </label>
+                                        <input type="text" readonly class="form-control" value="" id="member_name">
+                                        <label for=""> Phone </label>
+                                        <input type="text" readonly class="form-control" value="" id="member_phone">
+
+                                        <label for=""> Address </label>
+                                        <textarea type="text" readonly class="form-control" value="" id="member_address"></textarea>
+                                        <label for=""> Remain PT </label>
+                                        <input type="text" readonly class="form-control" value="" id="member_remain">
+
+                                        <div class="form-check form-switch">
+                                            <input name="trainer" value="yes" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" >
+                                            <label class="form-check-label" for="flexSwitchCheckChecked"> Person Trainer </label>
+                                        </div>
+
+
+
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button class="btn btn-primary my-3">Check In</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </form>
+
+
             </div>
             <div class="col-md-12 ">
+
 
                 <form action="{{ route('checkin.member') }}" >
 
@@ -80,6 +113,7 @@
                         <thead>
                             <tr>
                                 <th> No </th>
+                                <th> ID </th>
                                 <th> Member </th>
                                 <th> Trainer </th>
                                 <th> DateTime </th>
@@ -92,6 +126,7 @@
                             @foreach($data as $k => $dat)
                             <tr>
                                 <td> {{(++$k)+(15*($data->currentPage()-1))}}</td>
+                                <td> {{$dat->member->code ?? 'No-ID'}}  </td>
                                 <td> {{$dat->member->name ?? 'No-Name'}}  </td>
                                 <td> {{$dat->trainer->name ?? 'Non-Trainer'}}  </td>
                                 <td> {{$dat->datetime}}  </td>

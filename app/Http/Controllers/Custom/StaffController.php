@@ -10,6 +10,32 @@ use App\Http\Controllers\Controller;
 class StaffController extends Controller
 {
 
+    public function list_staff2($search=null)
+    {
+        if($search)
+        {
+            $data=Staff::where('join_date','like',"%$search%")
+            ->orwhere('name','like',"%$search%")
+            ->orwhere('nrc_number','like',"%$search%")
+            ->orwhere('dateofbirth','like',"%$search%")
+            ->orwhere('username','like',"%$search%")
+            ->orwhere('address','like',"%$search%")
+            ->orwhere('type','like',"%$search%")
+            ->orwhere('salary','like',"%$search%")
+            ->orwhere('phone','like',"%$search%")
+            ->orderBy('id','desc')->pagindate(15);
+
+        }
+        else
+        {
+            $data=Staff::orderBy('id','DESC')->paginate(15);
+        }
+
+        return view('acustom.staff.list2',compact('data'));
+    }
+
+
+
     public function list_staff($search=null)
     {
         if($search)

@@ -33,6 +33,7 @@
                     <thead>
                         <tr>
                             <th> No </th>
+                            <th> ID </th>
                             <th> Member </th>
                             <th> Trainer </th>
                             <th> DateTime </th>
@@ -45,11 +46,14 @@
                         @foreach($data as $k => $dat)
                         <tr>
                             <td> {{(++$k)+(15*($data->currentPage()-1))}}</td>
+                            <td> {{$dat->member->code ?? 'No-ID'}}  </td>
                             <td> {{$dat->member->name ?? 'No-Name'}}  </td>
                             <td> {{$dat->trainer->name ?? 'Non-Trainer'}}  </td>
                             <td> {{$dat->datetime}}  </td>
                             <td> {{$dat->expire_date ?? ''}}  </td>
-                            <td> {{$dat->package->month.' Months ' ?? ''}}  </td>
+                            <td> @isset($dat->package->month)
+                                {{$dat->package->month ?? ''}} Months
+                            @endisset  </td>
 
 
 

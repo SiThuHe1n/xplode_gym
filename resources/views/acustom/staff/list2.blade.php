@@ -5,6 +5,7 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
+        <a href="{{route('staff.add')}}" class="btn btn-primary"> Add staff</a>
         {{-- <div class="row">
             <div class="col-6">
 
@@ -76,6 +77,8 @@
 
 
                             @endif
+                            <a href="{{route('staff.edit',$dat->id)}}" class="btn btn-dark"> Edit </a>
+                            <a href="{{route('staff.delete',$dat->id)}}" class="btn btn-dark"> Delete </a>
 
                             {{-- @if(Auth::user()->type=="admin") --}}
                          {{-- <a  href="/customerdelete/{{$dat->id}}" class="btn btn-danger"> <i class="fas fa-trash"></i> </a> --}}

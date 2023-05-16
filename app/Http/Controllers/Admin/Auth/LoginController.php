@@ -25,7 +25,7 @@ class LoginController extends Controller
 
         $remember_me = $request->has('remember') ? true : false;
         if (auth('staff')->attempt(['username' => $request->username, 'password' => $request->password], $remember_me)) {
-            return redirect()->route('checkin');
+            return redirect()->route('checkin.member');
         }
 
         return redirect()->back()->withInput($request->only('username', 'remember'))
