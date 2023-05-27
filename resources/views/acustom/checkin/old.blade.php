@@ -7,11 +7,11 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 py-5  ">
+            <div class="col-md-12 py-5  ">
                 <form action="{{ route('create.member.old') }}" method="post">
                     @csrf
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-10 m-5 p-5 shadow bg-white rounded">
+                        <div class="col-md-12 m-5 p-5 shadow bg-white rounded">
                             <label for=""> Search </label>
                             <input onchange="search_member(this.value)" type="text" id="search" class="form-control">
 
@@ -37,7 +37,7 @@
                             <hr>
 
                                 <label for=""> Package </label>
-                                <select  name="package" class="form-control @error('package') is-invalid @enderror">
+                                <select onchange="change_section(this.value)" name="package" class="form-control @error('package') is-invalid @enderror">
                                     <option value="">Select </option>
                                     @foreach(App\Models\Package::where('month','!=',null)->get() as $key => $pkg)
 
@@ -75,7 +75,7 @@
                                     <div class="col-md-6">
 
                                         <label for=""> PT </label>
-                                        <select id="pt_time"  name="section" class="form-control @error('section') is-invalid @enderror">
+                                        <select onchange="change_trainer(this.value)" id="pt_time"  name="section" class="form-control @error('section') is-invalid @enderror">
 
                                         </select>
                                         @error('section')
@@ -90,7 +90,26 @@
 
                                 <hr>
                                 <div class="row">
+
                                     <div class="col-md-6">
+
+
+                                        <label for="">Total Price</label>
+                                        <input type="text" class="form-control" readonly id="total_price">
+
+                                        <label for=""> Amount </label>
+                                        <input type="text" name="amount" class="form-control @error('amount') is-invalid @enderror">
+                                        @error('amount')
+                                            <span class="error invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+
+
+                                    </div>
+                                    <div class="col-md-6">
+
+
                                         <label for=""> Payment Method </label>
                                         <select  name="payment_method" class="form-control @error('payment_method') is-invalid @enderror">
                                             <option value="">Select </option>
@@ -106,24 +125,15 @@
                                                 {{ $message }}
                                             </span>
                                         @enderror
-                                    </div>
-                                    <div class="col-md-6">
 
-                                    <label for=""> Amount </label>
-                                    <input type="text" name="amount" class="form-control @error('amount') is-invalid @enderror">
-                                    @error('amount')
-                                        <span class="error invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
 
                                     </div>
                                     <div class="col-md-6">
                                         <label for=""> Payment Method (option) </label>
                                         <select  name="payment_method2" class="form-control @error('payment_method2') is-invalid @enderror">
                                             <option value="">Select </option>
-                                            @foreach(App\Models\PaymentMethod::all() as $key => $pkg)
-                                            <option value="{{ $pkg->id }}"> {{ $pkg->name }} </option>
+                                            @foreach(App\Models\Account::all() as $key => $pkg)
+                                            <option value="{{ $pkg->id }}"> {{ $pkg->account }} </option>
                                             @endforeach
 
 
@@ -189,6 +199,40 @@
 
 
 <script>
+
+var section_price=0;
+var trainer_price=0;
+var total_price=0;
+var section_data=JSON.parse('{{ json_encode(App\Models\Package::where('month','!=',null)->get()) }}'.replace(/&quot;/ig,'"'));
+
+var trainer_data=JSON.parse('{{ json_encode(App\Models\Section::all()) }}'.replace(/&quot;/ig,'"'));
+
+function change_section(dt)
+{   section_data.forEach(et => {
+    if(dt==et.id)
+    {
+        section_price=et.cost;
+    }
+});
+total_price=parseInt(trainer_price) +parseInt(section_price);
+    $('#total_price').val(total_price);
+
+}
+
+function change_trainer(dt)
+{   trainer_data.forEach(et => {
+    if(dt==et.id)
+    {
+        trainer_price=et.cost;
+    }
+});
+total_price=parseInt(trainer_price) +parseInt(section_price);
+    $('#total_price').val(total_price);
+}
+
+
+
+
     var member=JSON.parse('{{ json_encode(App\Models\Member::all()) }}'.replace(/&quot;/ig,'"'));
 
 function changemember(dt)
@@ -226,6 +270,7 @@ function changetrainer(dt)
                $('#pt_time').append('<option value="'+dd.id+'"> '+dd.time+'times ('+dd.cost+' mmk) </option>');
 
            });
+           change_trainer( $('#pt_time').val());
            },
            error: function(error) {
                console.log(error);

@@ -10,63 +10,197 @@
 <div class="content">
     <div class="container-fluid">
 
+        <form action="">
 
-
-        <div class="row my-3">
-            <div class="col-md-4 p-3">
-                <div class="information">
-                    <h5>Total Sale </h5>
-               
-                </div>
-            </div>
-            <div class="col-md-4 p-3">
-                <div class="information">
-                    <h5>Total Purchase </h5>
-                </div>
-            </div>
-
-            <div class="col-md-4 p-3">
-                <div class="information">
-                    <h5>Today Sale </h5>
-                </div>
-            </div>
-            <div class="col-md-4 p-3">
-                <div class="information">
-                    <h5>Today Purchase </h5>
-                </div>
-            </div>
-
-
-
-        </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="">From Date </label>
-                <input type="date" class="form-control">
+                <input name="from" type="date" class="form-control">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="">To Date </label>
-                <input type="date" class="form-control">
+                <input name="to" type="date" class="form-control">
+            </div>
+
+            <div class="col-md-4">
+                <label for="">Action </label>
+               <button class="btn btn-primary form-control"> Submit </button>
             </div>
         </div>
+    </form>
+
         <div class="row my-3">
-            <div class="col-md-4 p-3">
-                <div class="information">
-                    <h5>Total Sale </h5>
+            <div class="col-sm-6 col-lg-4 mb-3 mt-3 mb-lg-5">
+                <!-- Card -->
+                <a class="card card-hover-shadow h-100 color-two" href="#">
+                    <div class="card-body">
+                        <div class="flex-between align-items-center mb-1">
+                            <div>
+                                <h6 class="card-subtitle text-white">{{\App\CPU\translate('New Member')}}</h6>
+                                <span class="card-title h2 text-white">
+                                  115000 kyats
+                                </span>
+                            </div>
+                            <div class="mt-2">
+                                <i class="tio-money-vs text-white font-one"></i>
+                            </div>
+                        </div>
+                        <!-- End Row -->
+                    </div>
+                </a>
+                <!-- End Card -->
                 </div>
+
+                <div class="col-sm-6 col-lg-4 mb-3 mt-3 mb-lg-5">
+                    <!-- Card -->
+                    <a class="card card-hover-shadow h-100 color-two" href="#">
+                        <div class="card-body">
+                            <div class="flex-between align-items-center mb-1">
+                                <div>
+                                    <h6 class="card-subtitle text-white">{{\App\CPU\translate('Total PT')}}</h6>
+                                    <span class="card-title h2 text-white">
+                                      115000 kyats
+                                    </span>
+                                </div>
+                                <div class="mt-2">
+                                    <i class="tio-money-vs text-white font-one"></i>
+                                </div>
+                            </div>
+                            <!-- End Row -->
+                        </div>
+                    </a>
+                    <!-- End Card -->
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4 mb-3 mt-3 mb-lg-5">
+                        <!-- Card -->
+                        <a class="card card-hover-shadow h-100 color-two" href="#">
+                            <div class="card-body">
+                                <div class="flex-between align-items-center mb-1">
+                                    <div>
+                                        <h6 class="card-subtitle text-white">{{\App\CPU\translate('Total Section')}}</h6>
+                                        <span class="card-title h2 text-white">
+                                          115000 kyats
+                                        </span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <i class="tio-money-vs text-white font-one"></i>
+                                    </div>
+                                </div>
+                                <!-- End Row -->
+                            </div>
+                        </a>
+                        <!-- End Card -->
+                        </div>
+
+
+
+
+        </div>
+
+
+        <div class="row my-3">
+            <div class="col-sm-6 col-lg-4 mb-3 mt-3 mb-lg-5">
+                <!-- Card -->
+                <a class="card card-hover-shadow h-100 color-two" href="#">
+                    <div class="card-body">
+                        <div class="flex-between align-items-center mb-1">
+                            <div>
+                                <h6 class="card-subtitle text-white">{{\App\CPU\translate('Total Sale')}}</h6>
+                                <span class="card-title h2 text-white">
+                                  115000 kyats
+                                </span>
+                            </div>
+                            <div class="mt-2">
+                                <i class="tio-money-vs text-white font-one"></i>
+                            </div>
+                        </div>
+                        <!-- End Row -->
+                    </div>
+                </a>
+                <!-- End Card -->
+                </div>
+
+            <div class="col-sm-6 col-lg-4 mb-3 mt-3 mb-lg-5">
+                <!-- Card -->
+                <a class="card card-hover-shadow h-100 color-two" href="#">
+                    <div class="card-body">
+                        <div class="flex-between align-items-center mb-1">
+                            <div>
+                                <h6 class="card-subtitle text-white">{{\App\CPU\translate('Total GYM Income')}}</h6>
+                                <span class="card-title h2 text-white">
+                                  115000 kyats
+                                </span>
+                            </div>
+                            <div class="mt-2">
+                                <i class="tio-money-vs text-white font-one"></i>
+                            </div>
+                        </div>
+                        <!-- End Row -->
+                    </div>
+                </a>
+                <!-- End Card -->
+                </div>
+
+
+                <div class="col-sm-6 col-lg-4 mb-3 mt-3 mb-lg-5">
+                    <!-- Card -->
+                    <a class="card card-hover-shadow h-100 color-two" href="#">
+                        <div class="card-body">
+                            <div class="flex-between align-items-center mb-1">
+                                <div>
+                                    <h6 class="card-subtitle text-white">{{\App\CPU\translate('Total Pos Income')}}</h6>
+                                    <span class="card-title h2 text-white">
+                                      115000 kyats
+                                    </span>
+                                </div>
+                                <div class="mt-2">
+                                    <i class="tio-money-vs text-white font-one"></i>
+                                </div>
+                            </div>
+                            <!-- End Row -->
+                        </div>
+                    </a>
+                    <!-- End Card -->
+                    </div>
+
+
+            <div class="col-md-12 p-3">
+                <h4>Income Graph Daily</h4>
+                <canvas id="IncreateChart"></canvas>
             </div>
-            <div class="col-md-4 p-3">
-                <div class="information">
-                    <h5>Total Purchase </h5>
-                </div>
+
+
+            <div class="col-md-6 p-3">
+                <h4>Income Graph Weekly</h4>
+                <canvas id="IncreateChart"></canvas>
+            </div>
+
+
+            <div class="col-md-6 p-3">
+                <h4>Income Graph Monthly</h4>
+                <canvas id="IncreateChart"></canvas>
             </div>
 
 
             <div class="col-md-12 p-3">
-                <h4>Sale Graph</h4>
+                <h4>New Member Graph Daily</h4>
                 <canvas id="IncreateChart"></canvas>
             </div>
+
+
+            <div class="col-md-6 p-3">
+                <h4>New Member Graph Weekly</h4>
+                <canvas id="IncreateChart"></canvas>
+            </div>
+
+
+            <div class="col-md-6 p-3">
+                <h4>New Member Graph Monthly</h4>
+                <canvas id="IncreateChart"></canvas>
+            </div>
+
 
         </div>
 
@@ -122,7 +256,7 @@ new Chart(ctx, {
     //   }
 
       }
-      @endphp 1,10,100,30,80,2,150],
+      @endphp ],
       borderWidth: 1,
       tension: 0.4,
       pointStyle: false,

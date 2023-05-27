@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Custom;
 
+use App\CPU\Helpers;
 use App\Models\Staff;
+use App\Models\Account;
+use App\Models\Product;
+use App\Models\Transection;
 use Illuminate\Http\Request;
 use App\Models\MemberSection;
 use Illuminate\Support\Carbon;
@@ -38,9 +42,14 @@ class ReportController extends Controller
         return view('acustom.checkin.voucher2',compact('member_section','route'));
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        return view('acustom.dashboard');
+
+        // return view('admin-views.dashboard',compact('account','monthly_income','monthly_expense','accounts','products','last_month_income','last_month_expense','month','total_day'));
+
+
+
+        return view('acustom.dashboard',compact('request'));
     }
     public function voucher_purchase2($id)
     {

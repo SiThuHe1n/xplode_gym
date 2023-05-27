@@ -589,4 +589,9 @@
   'Staff ' => 'Staff ',
   'Cash & Bank' => 'Cash & Bank',
   'Sale Section List' => 'Sale Section List',
+  'Total Pos Income' => 'Total Pos Income',
+  'Total GYM Income' => 'Total GYM Income',
+  'Total Sale' => 'Total Sale',
+  'Total Section' => 'Total Section',
+  'Total PT' => 'Total PT',
 );

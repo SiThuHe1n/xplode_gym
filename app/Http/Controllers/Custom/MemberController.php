@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Custom;
 
 use App\Models\Member;
+use App\Models\Account;
 use App\Models\Package;
 use App\Models\Section;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class MemberController extends Controller
             ->orwhere('dateofbirth','like',"%$request->member%")
 
             ->orwhere('address','like',"%$request->member%")
-       
+
 
             ->orwhere('phone','like',"%$request->member%")
             ->orderBy('id','desc')->paginate(15);
@@ -257,12 +258,53 @@ return redirect()->route('member.list');
         $member_section->package_id=$request->package;
         $member_section->trainer_id=$request->trainer;
         $member_section->trainer_section=$request->section;
+        if(Package::find($request->package))
+        {
+           $package=Package::find($request->package)->cost;
+           $member_section->section_amount=$package;
+        }
+        else
+
+        {
+           $package=0;
+        }
+
+        if(Section::find($request->section))
+        {
+           $section=Section::find($request->section)->cost;
+           $member_section->trainer_amount=$section;
+        }
+        else
+        {
+           $section=0;
+        }
+
+
+
+
+        $member_section->total_amount=$section+$package;
+
+
 
         $member_section->datetime=Carbon::now();
         $member_section->payment_method=$request->payment_method;
         $member_section->amount=$request->amount;
-        $member_section->payment_method2=$request->payment_method2;
-        $member_section->amount2=$request->amount2;
+        $account1=Account::find($request->payment_method);
+        $account1->total_in+=$request->amount;
+        $account1->balance+=$request->amount;
+        $account1->save();
+
+        if( $member_section->payment_method2 && $member_section->amount2 )
+        {
+            $member_section->payment_method2=$request->payment_method2;
+            $member_section->amount2=$request->amount2;
+            $account2=Account::find($request->payment_method2);
+            $account2->total_in+=$request->amount2;
+            $account2->balance+=$request->amount2;
+            $account2->save();
+        }
+
+
         $member_section->note=$request->note;
         $member_section->save();
 
@@ -389,12 +431,49 @@ return redirect()->route('member.list');
         $member_section->package_id=$request->package;
         $member_section->trainer_id=$request->trainer;
         $member_section->trainer_section=$request->section;
+        if(Package::find($request->package))
+        {
+           $package=Package::find($request->package)->cost;
+           $member_section->section_amount=$package;
+        }
+        else
+
+        {
+           $package=0;
+        }
+
+        if(Section::find($request->section))
+        {
+           $section=Section::find($request->section)->cost;
+           $member_section->trainer_amount=$section;
+        }
+        else
+        {
+           $section=0;
+        }
+
+
+
+
+        $member_section->total_amount=$section+$package;
 
         $member_section->datetime=Carbon::now();
         $member_section->payment_method=$request->payment_method;
         $member_section->amount=$request->amount;
-        $member_section->payment_method2=$request->payment_method2;
-        $member_section->amount2=$request->amount2;
+        $account1=Account::find($request->payment_method);
+        $account1->total_in+=$request->amount;
+        $account1->balance+=$request->amount;
+        $account1->save();
+
+        if( $member_section->payment_method2 && $member_section->amount2 )
+        {
+            $member_section->payment_method2=$request->payment_method2;
+            $member_section->amount2=$request->amount2;
+            $account2=Account::find($request->payment_method2);
+            $account2->total_in+=$request->amount2;
+            $account2->balance+=$request->amount2;
+            $account2->save();
+        }
         $member_section->note=$request->note;
         $member_section->save();
 
@@ -585,12 +664,50 @@ public function new_guest(Request $request)
      $member_section->package_id=$request->package;
      $member_section->trainer_id=$request->trainer;
      $member_section->trainer_section=$request->section;
+     if(Package::find($request->package))
+     {
+        $package=Package::find($request->package)->cost;
+        $member_section->section_amount=$package;
+     }
+     else
+
+     {
+        $package=0;
+     }
+
+     if(Section::find($request->section))
+     {
+        $section=Section::find($request->section)->cost;
+        $member_section->trainer_amount=$section;
+     }
+     else
+     {
+        $section=0;
+     }
+
+
+
+
+     $member_section->total_amount=$section+$package;
+
 
      $member_section->datetime=Carbon::now();
      $member_section->payment_method=$request->payment_method;
      $member_section->amount=$request->amount;
-     $member_section->payment_method2=$request->payment_method2;
-     $member_section->amount2=$request->amount2;
+     $account1=Account::find($request->payment_method);
+     $account1->total_in+=$request->amount;
+     $account1->balance+=$request->amount;
+     $account1->save();
+
+     if( $member_section->payment_method2 && $member_section->amount2 )
+     {
+         $member_section->payment_method2=$request->payment_method2;
+         $member_section->amount2=$request->amount2;
+         $account2=Account::find($request->payment_method2);
+         $account2->total_in+=$request->amount2;
+         $account2->balance+=$request->amount2;
+         $account2->save();
+     }
      $member_section->note=$request->note;
      $member_section->save();
 
@@ -713,7 +830,7 @@ public function guest_member(Request $request)
             ->orwhere('dateofbirth','like',"%$request->member%")
 
             ->orwhere('address','like',"%$request->member%")
-       
+
 
             ->orwhere('phone','like',"%$request->member%");
         })
@@ -744,7 +861,7 @@ public function expire_member(Request $request)
             ->orwhere('dateofbirth','like',"%$request->member%")
 
             ->orwhere('address','like',"%$request->member%")
-       
+
 
             ->orwhere('phone','like',"%$request->member%");
         })
@@ -775,7 +892,7 @@ public function active_member(Request $request)
             ->orwhere('dateofbirth','like',"%$request->member%")
 
             ->orwhere('address','like',"%$request->member%")
-       
+
 
             ->orwhere('phone','like',"%$request->member%");
         })
